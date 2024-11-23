@@ -30,4 +30,7 @@ mongoose
 app.use("/api", dataRoutes);
 
 // Start Server
-app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+// Listen to the port Vercel provides or fallback to 3000
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log("Server running on http://localhost:5000"));
