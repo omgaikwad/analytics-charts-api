@@ -3,8 +3,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dataRoutes = require("./routes/dataRoutes");
+require("dotenv").config();
 
 const app = express();
+
+// Access MongoDB URI from environment variables
+const mongoURI = process.env.MONGO_URI;
 
 // Middleware
 app.use(cors());
@@ -12,7 +16,7 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/analytics", {
+  .connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
